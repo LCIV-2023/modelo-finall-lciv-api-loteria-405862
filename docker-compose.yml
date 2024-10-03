@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  java_app:
+    container_name: java_app
+    build: .
+    image: peee-java_app
+    ports:
+      - "8081:8080"
+    depends_on:
+      - java_api  # Asegura que la API externa se levante primero
+
+  java_api:
+    container_name: java_api
+    image: gabrielarriola/api-loteria
+    ports:
+      - "8080:8080"  # Mapea el puerto 8080 de la API externa al host
+
